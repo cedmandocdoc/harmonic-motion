@@ -37,7 +37,7 @@ const SSMS = () => {
         <Range
           label="Mass (m):"
           value={mass}
-          min="10"
+          min="20"
           max="500"
           onChange={e => setMass(+e.target.value)}
         />
