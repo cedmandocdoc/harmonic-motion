@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/harmonic-motion/precache-manifest.8be8535008a76dfca586ee21719c401a.js"
+  "/harmonic-motion/precache-manifest.f8900855179f324dace0c48755967a54.js"
 );
 
 self.addEventListener('message', (event) => {
