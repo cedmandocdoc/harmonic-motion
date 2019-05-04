@@ -2,6 +2,7 @@
   "name": "harmonic-motion",
   "version": "0.1.0",
   "private": true,
+  "description": "Articles about harmonic motion",
   "homepage": "http://cmandocdoc.github.io/harmonic-motion",
   "dependencies": {
     "gh-pages": "^2.0.1",
