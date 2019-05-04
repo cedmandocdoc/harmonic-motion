@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import MathJax from "react-mathjax2";
 
 import SideNav from "./components/SideNav";
 import Articles from "./components/Articles";
@@ -11,10 +12,12 @@ const Container = styled.div`
 `;
 
 const App = () => (
-  <Container>
-    <Articles />
-    <SideNav />
-  </Container>
+  <MathJax.Context input="ascii">
+    <Container>
+      <Articles />
+      <SideNav />
+    </Container>
+  </MathJax.Context>
 );
 
 export default App;

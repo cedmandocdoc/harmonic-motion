@@ -7,12 +7,13 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: auto 1fr;
   grid-gap: 20px;
+  padding: 20px 0px;
 `;
 
 const SSMS = () => {
-  const [mass, setMass] = useState(50);
+  const [mass, setMass] = useState(500);
   const [stiffness, setStiffness] = useState(2000);
-  const [amplitude, setAmplitude] = useState(50);
+  const [amplitude, setAmplitude] = useState(100);
 
   const [time, setTime] = useState(0);
 
@@ -31,28 +32,28 @@ const SSMS = () => {
 
   return (
     <Container>
-      <SMS displacement={getSHMDisplacement()} />
+      <SMS displacement={getSHMDisplacement()} amplitude={amplitude} />
       <div>
         <Range
           label="Mass (m):"
           value={mass}
           min="10"
           max="500"
-          onChange={e => setMass(e.target.value)}
+          onChange={e => setMass(+e.target.value)}
         />
         <Range
           label="Stiffness (k):"
           value={stiffness}
           min="1000"
           max="5000"
-          onChange={e => setStiffness(e.target.value)}
+          onChange={e => setStiffness(+e.target.value)}
         />
         <Range
           label="Amplitude (A):"
           value={amplitude}
-          min="10"
+          min="50"
           max="100"
-          onChange={e => setAmplitude(e.target.value)}
+          onChange={e => setAmplitude(+e.target.value)}
         />
       </div>
     </Container>
