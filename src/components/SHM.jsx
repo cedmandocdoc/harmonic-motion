@@ -143,7 +143,7 @@ const SHM = () => (
     <p>
       when velocity is 0 it that is the moment that it will change the
       direction, therefore the mass is on the maximum amplitude, so N is the
-      maximum amplitude at time pi/2, and gives us the motion of equation
+      maximum amplitude at time pi/2, and gives us the quation of motion
     </p>
     <MathJaxNode>{"x(t) = A sin(omega t)"}</MathJaxNode>
     <MathJaxNode>{"x(t) = A sin(sqrt(k/m) t)"}</MathJaxNode>
