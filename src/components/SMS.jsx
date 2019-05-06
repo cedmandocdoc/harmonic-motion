@@ -68,50 +68,30 @@ const Spring = styled.img`
   width: 150px;
 `;
 
-const SMS = ({ displacement, amplitude }) => {
-  const [RFDirection, setRFDirection] = useState("left");
-
-  useEffect(() => {
-    if (-amplitude === Math.floor(+displacement.toFixed(2)))
-      setRFDirection("right");
-    if (amplitude === Math.ceil(+displacement.toFixed(2)))
-      setRFDirection("left");
-  }, [displacement, amplitude]);
-  return (
-    <Container>
-      <Wall src={wall} />
-      <Spring src={spring} style={{ width: `${150 + displacement}px` }} />
-      <Box>
-        <Line
-          background="blue"
-          left="calc(50% - 2.5px)"
-          top="0px"
-          width="5px"
-          height="100%"
-          border="solid"
-        />
-      </Box>
-      <VerticalDashedLine left="220px" label="equilibrium" />
-      <VerticalDashedLine left={`${220 + amplitude}px`} label="+A" />
-      <VerticalDashedLine left={`${220 - amplitude}px`} label="-A" />
-      <HorizontalDashedLine left="220px" width={`${amplitude}px`} label="+x" />
-      <HorizontalDashedLine
-        left={`${220 - amplitude}px`}
-        width={`${amplitude}px`}
-        label="-x"
+const SMS = ({ displacement, amplitude }) => (
+  <Container>
+    <Wall src={wall} />
+    <Spring src={spring} style={{ width: `${150 + displacement}px` }} />
+    <Box>
+      <Line
+        background="blue"
+        left="calc(50% - 2.5px)"
+        top="0px"
+        width="5px"
+        height="100%"
+        border="solid"
       />
-      <label
-        style={{ position: "absolute", top: -10, left: 205, fontSize: 11 }}
-      >
-        F<sub>r</sub>{" "}
-        {RFDirection === "left" ? (
-          <span>&larr; (-)</span>
-        ) : (
-          <span>&rarr; (+)</span>
-        )}
-      </label>
-    </Container>
-  );
-};
+    </Box>
+    <VerticalDashedLine left="220px" label="equilibrium" />
+    <VerticalDashedLine left={`${220 + amplitude}px`} label="+A" />
+    <VerticalDashedLine left={`${220 - amplitude}px`} label="-A" />
+    <HorizontalDashedLine left="220px" width={`${amplitude}px`} label="+x" />
+    <HorizontalDashedLine
+      left={`${220 - amplitude}px`}
+      width={`${amplitude}px`}
+      label="-x"
+    />
+  </Container>
+);
 
 export default SMS;
