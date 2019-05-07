@@ -3,8 +3,8 @@ import styled from "styled-components";
 import Link from "./Link";
 
 const links = [
-  { to: "#shm", label: "Simple Harmonic Motion" },
-  { to: "#dhm", label: "Damped Harmonic Motion" }
+  { to: "#dhm", label: "Damped Harmonic Motion" },
+  { to: "#shm", label: "Simple Harmonic Motion" }
 ];
 
 const LinkList = styled.div`
