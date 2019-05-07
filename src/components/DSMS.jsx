@@ -79,21 +79,21 @@ const DSMS = () => {
         <Range
           label="Mass (m):"
           value={mass}
-          min="20"
+          min="10"
           max="500"
           onChange={e => setMass(+e.target.value)}
         />
         <Range
           label="Stiffness (k):"
           value={stiffness}
-          min="1000"
+          min="10"
           max="5000"
           onChange={e => setStiffness(+e.target.value)}
         />
         <Range
           label="Damping (b):"
           value={damping}
-          min="1000"
+          min="10"
           max="5000"
           onChange={e => setDamping(+e.target.value)}
         />
@@ -107,7 +107,7 @@ const DSMS = () => {
         <Range
           label="Initial Velocity (v):"
           value={initialVelocity}
-          min="50"
+          min="0"
           max="100"
           onChange={e => setInitialVelocity(+e.target.value)}
         />

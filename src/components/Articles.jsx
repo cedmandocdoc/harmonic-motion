@@ -10,8 +10,8 @@ const Container = styled.div`
 
 const Articles = () => (
   <Container>
-    <SHM />
     <DHM />
+    <SHM />
   </Container>
 );
 
