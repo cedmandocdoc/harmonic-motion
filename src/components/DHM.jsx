@@ -76,7 +76,7 @@ const DHM = () => (
     </p>
     <Equation>{"alpha = (-b/m +- sqrt(b^2/m^2 - (4k)/m)) / 2"}</Equation>
     <p>
-      we will have 3 solutions, since the value of inside the square root can be
+      we will have 3 solutions, since the value inside the square root can be
       negative, we will have additional set of numbers called complex
     </p>
     <p>
@@ -87,7 +87,7 @@ const DHM = () => (
     <Equation>{"(b^2m-4km^2)/m^3"}</Equation>
     <Equation>{"(b^2-4km)/m^2"}</Equation>
     <p>
-      and we can say when say that the ratio is{" "}
+      and we can say that the ratio is{" "}
       <Equation inline>{"b^2 / (4km)"}</Equation>.
     </p>
     <p>
