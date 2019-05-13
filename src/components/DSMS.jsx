@@ -27,6 +27,10 @@ const DSMS = () => {
     const k = stiffness;
     const x0 = initialDisplacement;
     const x1 = initialVelocity;
+    const precision = 0.01;
+
+    let velocity = 0;
+    let displacement = 0;
 
     const z = b / Math.sqrt(4 * k * m);
     if (z < 1) {
@@ -34,17 +38,23 @@ const DSMS = () => {
       const w = Math.sqrt(Math.abs(Math.pow(b / m, 2) - (4 * k) / m));
       const B = -(x1 + (x0 * b) / (2 * m)) / w;
       const A = x0;
-      return (
+      displacement =
         Math.exp((-b * t) / (2 * m)) *
-        (A * Math.cos(w * t) + B * Math.sin(w * t))
-      );
+        (A * Math.cos(w * t) + B * Math.sin(w * t));
+      velocity =
+        (A * Math.cos(w * t) + B * Math.sin(w * t)) *
+          (-1 * (b / (2 * m))) *
+          Math.exp((-1 * b * t) / (2 * m)) +
+        (A * w * Math.sin(w * t) + B * w * Math.cos(w * t)) *
+          Math.exp((-1 * b * t) / (2 * m));
     } else if (z === 1) {
       // critically damped
       const r = -(b / (2 * m));
-      const C2 = x1 - x0 * r;
-      const C1 = x0;
-      const res = C1 * Math.exp(r * t) + C2 * t * Math.exp(r * t);
-      return res;
+      const B = x1 - x0 * r;
+      const A = x0;
+      displacement = A * Math.exp(r * t) + B * t * Math.exp(r * t);
+      velocity =
+        A * r * Math.exp(r * t) + B * (Math.exp(r * t) + t * Math.exp(r * t));
     } else if (z > 1) {
       // overdamped
       const w = Math.sqrt(Math.abs(Math.pow(b / m, 2) - (4 * k) / m));
@@ -52,8 +62,14 @@ const DSMS = () => {
       const r2 = 0.5 * (-b / m - w);
       const B = (x1 - r1 * x0) / (r2 - r1);
       const A = x0 - B;
-      return A * Math.exp(r1 * t) + B * Math.exp(r2 * t);
+      displacement = A * Math.exp(r1 * t) + B * Math.exp(r2 * t);
+      velocity = A * r1 * Math.exp(r1 * t) + B * r2 * Math.exp(r2 * t);
     }
+
+    const isNoVelocity = Math.abs(velocity) <= precision;
+    const isNoDisplacement = Math.abs(displacement) <= precision;
+    const shouldStop = isNoVelocity && isNoDisplacement;
+    return shouldStop ? 0 : displacement;
   };
 
   useEffect(() => {
@@ -68,7 +84,6 @@ const DSMS = () => {
     });
     return () => cancelAnimationFrame(raf);
   }, [mass, stiffness, damping, initialDisplacement, initialVelocity]);
-
   return (
     <Container>
       <SMS
