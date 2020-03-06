@@ -1,1 +1,1 @@
-Visit the github [page](http://cmandocdoc.github.io/harmonic-motion)
+Visit the github [page](http://cedmandocdoc.github.io/harmonic-motion)
