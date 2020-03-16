@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import Range from "./Range";
 import SMS from "./SMS";
@@ -10,29 +10,36 @@ const Container = styled.div`
   padding: 20px 0px;
 `;
 
+const getSHMDisplacement = ({ amplitude, stiffness, mass, time }) => amplitude * Math.sin((Math.sqrt(stiffness / mass) * time) / 1000)
+
 const SSMS = () => {
   const [mass, setMass] = useState(500);
   const [stiffness, setStiffness] = useState(2000);
   const [amplitude, setAmplitude] = useState(100);
 
-  const [time, setTime] = useState(0);
+  const [displacement, setDisplacement] = useState(0);
 
-  const getSHMDisplacement = () =>
-    amplitude * Math.sin((Math.sqrt(stiffness / mass) * time) / 1000);
+  const raf = useRef();
 
   useEffect(() => {
-    let raf;
+    let startTime = 0;
+
     const tick = time => {
-      setTime(time);
-      raf = requestAnimationFrame(tick);
+      startTime = startTime || time;
+      const displacement = getSHMDisplacement({ time, amplitude, mass, stiffness });
+      setDisplacement(displacement);
+      raf.current = requestAnimationFrame(tick);
     };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+
+    raf.current = requestAnimationFrame(tick);
+
+    const stop = () => cancelAnimationFrame(raf.current);
+    return stop;
   }, [mass, amplitude, stiffness]);
 
   return (
     <Container>
-      <SMS displacement={getSHMDisplacement()} amplitude={amplitude} />
+      <SMS displacement={displacement} amplitude={amplitude} />
       <div>
         <Range
           label="Mass (m):"
